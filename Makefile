@@ -3,9 +3,9 @@ VERSION=$(shell cat VERSION)
 
 dev:
 	docker build -f Dockerfile.dev -t $(NAME):dev .
-	docker run --rm \
+	docker run --rm --net host \
 		-v /var/run/docker.sock:/tmp/docker.sock \
-		$(NAME):dev /bin/registrator consul:
+		$(NAME):dev /bin/registrator elastic:
 
 build:
 	mkdir -p build
